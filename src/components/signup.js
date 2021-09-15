@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 
+//Async function sending a POST request to the server
 const sendSignUp = async ( email, password, confirmPassword) => {
+    //API URL FOR THE REGISTER
+    const API_URL = '';
     const item = JSON.stringify({
         email : email,
         password: password
     });
     if(password===confirmPassword){
-        const data = await fetch('https://recruitment.ultimate.systems/auth/local/register', {
+        const data = await fetch(API_URL, {
             method: 'POST',
             mode: "cors",
             headers: {
