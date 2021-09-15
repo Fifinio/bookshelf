@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 const sendSignUp = async ( email, password, confirmPassword) => {
     //API URL FOR THE REGISTER
     const API_URL = '';
+
     const item = JSON.stringify({
         email : email,
         password: password
@@ -22,9 +23,6 @@ const sendSignUp = async ( email, password, confirmPassword) => {
         .then(data => data)
         .catch(err=>console.error(err))
 
-        if(data){
-            document.getElementById('regHead').value = "Signed up successfully";
-        }
     }
     else{
         alert("Passwords don't match!");
@@ -39,28 +37,36 @@ const SignUp = (props) => {
   	const [confirmPassword, setConfirmPassword] = useState('');
 
     return (
-    	<div className="form">
+    	<div className="ui container form">
     		{props.children}
         <h4 id="regHead">Create a new account</h4>
         
-        <input 
+        <label>Email</label>
+        <input
+            className="middle"
 			name="email" 
 			placeholder="Email" 
 			type="text" required
 			onChange={e=>setEmail(e.target.value)}/>
+                
+        <label>Password</label>
         <input 
+
 			name="password" 
 			placeholder="Password" 
 			type="password" required 
 			onChange={e=>setPassword(e.target.value)}/>
+                
+        <label>Email</label>
         <input 
 			name="confirmPassword" 
 			placeholder="Repeat Password" 
 			type="password" required 
 			onChange={e=>setConfirmPassword(e.target.value)}/>
-        <button onClick={() => sendSignUp(email, password, confirmPassword)}>Create</button>
+                
+        <button className="ui button" onClick={() => sendSignUp(email, password, confirmPassword)}>Sign up</button>
       </div>
     );
 }
 
-export default SignUp
+export default SignUp;
