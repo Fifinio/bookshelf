@@ -1,4 +1,7 @@
 import React, {useState} from 'react';
+import { useAuth } from '../contexts/AuthContext';
+
+//Łukasz todos -- implement form with useAtuh from AuthContext
 
 //Async function sending a POST request to the server
 const sendSignUp = async ( email, password, confirmPassword) => {
