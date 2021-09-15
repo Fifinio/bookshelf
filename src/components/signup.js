@@ -22,21 +22,27 @@ const SignUp = (props) => {
     }
 
     return (
-        <>
-    	<div className="form">
+    	<div className="ui container form">
     		{props.children}
         <h4 id="regHead">Create a new account</h4>
         
-        <input 
+        <label>Email</label>
+        <input
+            className="middle"
 			name="email" 
 			placeholder="Email" 
 			type="text" required
 			onChange={e=>setEmail(e.target.value)}/>
+                
+        <label>Password</label>
         <input 
+
 			name="password" 
 			placeholder="Password" 
 			type="password" required 
 			onChange={e=>setPassword(e.target.value)}/>
+                
+        <label>Email</label>
         <input 
 			name="confirmPassword" 
 			placeholder="Repeat Password" 
@@ -49,4 +55,4 @@ const SignUp = (props) => {
     );
 }
 
-export default SignUp
+export default SignUp;
