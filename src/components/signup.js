@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
 //Łukasz todos -- implement form with useAtuh from AuthContext
@@ -36,12 +36,28 @@ const sendSignUp = async ( email, password, confirmPassword) => {
 
 
 
+
+
 const SignUp = (props) => {
   	const [email, setEmail] = useState('');
   	const [password, setPassword] = useState('');
   	const [confirmPassword, setConfirmPassword] = useState('');
+    const [passwordError, setPasswordError] = useState('')
+    const  { signup } = useAuth();
+    const confirmPasswordRef = useRef();
+
+    const handleSubmit = (e) => {
+        if (password !== confirmPasswordRef.current.value) {
+            setPasswordError(`Password don't match!`)
+        }
+        else {
+            signup(email, password)
+            setPasswordError('')
+        }
+    }
 
     return (
+        <>
     	<div className="form">
     		{props.children}
         <h4 id="regHead">Create a new account</h4>
@@ -59,10 +75,13 @@ const SignUp = (props) => {
         <input 
 			name="confirmPassword" 
 			placeholder="Repeat Password" 
-			type="password" required 
+			type="password" required
+            ref={confirmPasswordRef}
 			onChange={e=>setConfirmPassword(e.target.value)}/>
-        <button onClick={() => sendSignUp(email, password, confirmPassword)}>Create</button>
+        <button onClick={handleSubmit}>Create</button>
       </div>
+      {passwordError && <span>{passwordError}</span>}
+      </>
     );
 }
 

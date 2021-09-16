@@ -5,7 +5,7 @@ import { AuthProvider } from './contexts/AuthContext';
 const App = () => {
     return (
     <AuthProvider>
-         <SignUp />;
+         <SignUp />
     </AuthProvider>
     )
 }
