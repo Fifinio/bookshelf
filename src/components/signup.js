@@ -22,7 +22,9 @@ const sendSignUp = async ( email, password, confirmPassword) => {
         .then(response => response.json())
         .then(data => data)
         .catch(err=>console.error(err))
-
+        if(data){
+            //confirm we registered successfully
+        }
     }
     else{
         alert("Passwords don't match!");
@@ -64,9 +66,13 @@ const SignUp = (props) => {
 			type="password" required 
 			onChange={e=>setConfirmPassword(e.target.value)}/>
                 
-        <button className="ui button" onClick={() => sendSignUp(email, password, confirmPassword)}>Sign up</button>
+        <button className="ui button" onClick={() => 
+            sendSignUp(email, password, confirmPassword)}>
+                Sign up
+        </button>
       </div>
     );
 }
+
 
 export default SignUp;
