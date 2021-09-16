@@ -55,8 +55,7 @@ export function AuthProvider({ children }) {
     function logout(){
         signOut(auth).then(() => {
             setCurrentUser('')
-            console.log(`Wylogowano użytkownika ${currentUser.email}`)
-            console.log('=============================================')
+
         })
         .catch((error) => {
             setErrorCode(error.code)
@@ -71,12 +70,6 @@ export function AuthProvider({ children }) {
         logout,
         errorCode,
         errorMessage
-    }
-
-    if(currentUser){
-        console.log("ZALOGOWANO " + JSON.stringify(currentUser.email))
-    } else {
-        console.log("BRAK ZALOGOWANEGO UŻYTKOWNIKA")
     }
 
     return (

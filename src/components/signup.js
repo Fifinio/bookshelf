@@ -13,7 +13,7 @@ const SignUp = (props) => {
     // function signup from AuthContext, create new user using firebase auth
     const handleSubmit = (e) => {
         if (password !== confirmPasswordRef.current.value) {
-            setPasswordError(`Password don't match!`)
+            setPasswordError(`Passwords don't match!`)
         }
         else {
             signup(email, password)
