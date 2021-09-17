@@ -1,8 +1,19 @@
 import React from 'react';
-import SignUp from './components/signup'
-import './styles/index.css';
+import SignUp from './components/SignUp'
+import { AuthProvider } from './contexts/AuthContext';
+import SignIn from './components/SignIn';
+
+
+  import './styles/index.css';
 const App = () => {
-    return <SignUp />;
+    return (
+    <AuthProvider>
+         <SignUp />
+         <br/>
+         <hr/>
+         <SignIn/>
+    </AuthProvider>
+    )
 }
 
 export default App;
