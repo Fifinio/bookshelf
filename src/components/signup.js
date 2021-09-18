@@ -1,3 +1,4 @@
+
 import React, {useRef, useState} from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -22,6 +23,10 @@ const SignUp = (props) => {
     }
 
     return (
+<<<<<<< HEAD
+=======
+        <>
+>>>>>>> 5f2ba470add98bfbd7e7d606a52a8420c8a6ef67
     	<div className="ui container form">
     		{props.children}
         <h4 id="regHead">Create a new account</h4>
@@ -49,6 +54,7 @@ const SignUp = (props) => {
 			type="password" required
             ref={confirmPasswordRef}/>
         <button onClick={handleSubmit}>Create</button>
+
       </div>
       {passwordError && <span>{passwordError}</span>}
       </>
