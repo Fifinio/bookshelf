@@ -1,20 +1,21 @@
-import { useAuth } from "../contexts/AuthContext";
+import Navbar from "./Navbar";
+import { Container } from "semantic-ui-react";
+import BookSegment from "./BookSegment";
 
 const Homepage = () => {
 
-    const { logout, currentUser } = useAuth();
+    
 
-    console.log(currentUser)
     return ( 
         
-        <>
-        <h3>
-            Homepage
-        </h3>
-
-                {currentUser && currentUser.email}
-                <button onClick={logout}>Log out</button>
-        </>
+        <Container>
+            <Navbar/>
+            <BookSegment title={'New books'} color={'red'} />
+            <BookSegment title={'Top rated'} color={'teal'} />
+            <BookSegment title={'Philosophy'} color={'blue'} />
+            <BookSegment title={'Horror'} color={'Olive'} />
+            <BookSegment title={'Programming'} color={'Brown'} />
+        </Container>
      );
 }
  
