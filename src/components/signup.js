@@ -1,14 +1,23 @@
 
 import React, {useRef, useState} from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
+import { Button, Input, Form, Grid, Header, Segment, Message, Image} from 'semantic-ui-react';
+import logo from "../images/bookshelf-logo.png"
 
 
 const SignUp = (props) => {
   	const [email, setEmail] = useState('');
   	const [password, setPassword] = useState('');
     const [passwordError, setPasswordError] = useState('')
-    const  { signup } = useAuth();
+    const  { signup, currentUser } = useAuth();
     const confirmPasswordRef = useRef();
+    const history = useHistory();
+
+    if(currentUser) {
+        history.push('./homepage')
+    }
 
 
     // function signup from AuthContext, create new user using firebase auth
@@ -19,44 +28,59 @@ const SignUp = (props) => {
         else {
             signup(email, password)
             setPasswordError('')
+            history.push('/Homepage')
         }
     }
 
     return (
-<<<<<<< HEAD
-=======
         <>
->>>>>>> 5f2ba470add98bfbd7e7d606a52a8420c8a6ef67
-    	<div className="ui container form">
-    		{props.children}
-        <h4 id="regHead">Create a new account</h4>
-        
-        <label>Email</label>
-        <input
-            className="middle"
-			name="email" 
-			placeholder="Email" 
-			type="text" required
-			onChange={e=>setEmail(e.target.value)}/>
-                
-        <label>Password</label>
-        <input 
+        <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+    	    <Grid.Column style={{maxWidth: 450 }} >
+                <Header as="h1" color='teal' textAlign="center" style={{height: '100px'}}>
+                    <Image src={logo}/>
+                    Log-in to your account
+                </Header>
 
-			name="password" 
-			placeholder="Password" 
-			type="password" required 
-			onChange={e=>setPassword(e.target.value)}/>
-                
-        <label>Email</label>
-        <input 
-			name="confirmPassword" 
-			placeholder="Repeat Password" 
-			type="password" required
-            ref={confirmPasswordRef}/>
-        <button onClick={handleSubmit}>Create</button>
+                <Form size="large">
+    		        {props.children}
+                    <Segment stacked>
+                    <Form.Field>
+                        <Input 
+                            className="ui input"
+                            name="email"
+                            placeholder="Email"
+                            type="text" required
+                            onChange={e=>setEmail(e.target.value)}/>
+                    </Form.Field>
+                    <Form.Field>
+                        <Input
+                            className="ui input"
+                            name="password"
+                            placeholder="Password"
+                            type="password" required
+                            onChange={e=>setPassword(e.target.value)}/>
+                    </Form.Field>
+                    <Form.Field>
+                        <Input
+                            className="ui input"
+                            name="confirmPassword"
+                            placeholder="Confirm Password"
+                            type="password" required
+                            ref={confirmPasswordRef}/>
+                        </Form.Field>
 
-      </div>
+                    <Button 
+                         className="ui primary button" 
+                            onClick={handleSubmit}>
+                            Create account</Button>
+                     </Segment>
+                </Form>
+        <Message size="small">Already have an account? <Link to='/signin'>Sign in!</Link></Message>
+        </Grid.Column>
+      </Grid>
       {passwordError && <span>{passwordError}</span>}
+
+      
       </>
     );
 }

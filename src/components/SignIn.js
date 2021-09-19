@@ -1,44 +1,47 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-// import { AuthProvider } from "../contexts/AuthContext";
+import { useHistory } from 'react-router';
 
 const SignIn = () => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const { signin, logout, currentUser } = useAuth();
+    const { signin } = useAuth();
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault()
         signin(email, password)
+        history.push('/Homepage')
     }
 
     return (
+    
         <>
+        <div className="ui container form">
             <form onSubmit={handleSubmit}>
-                <input type={"email"}
+                <input 
+                    type={"email"}
                     name={"email"}
+                    className="formTextInput"
                     placeholder={"Email"}
                     onChange={e => setEmail(e.target.value)}
                     required />
-                <input type={"password"}
+                <input 
+                    type={"password"}
                     name={"password"}
+                    className="formTextInput"
                     placeholder={"Password"}
                     onChange={e => setPassword(e.target.value)}
                     required />
-                <button type={'submit'}>Sign in</button>
+                <button 
+                type={'submit'}
+                className={'button'}>Sign in</button>
             </form>
 
-            {/* <AuthProvider.Consumer>
-            {user => console.log(user)}
-        </AuthProvider.Consumer> */}
+            <span>Need an accout? <Link to='/signup'>Sign up!</Link></span>
 
-            <hr />
-            {currentUser &&
-                <>
-                    <h1>Witaj {currentUser.email}</h1>
-                    <button onClick={logout}>Log out</button>
-                </>
-                }
+        </div>
         </>
     );
 }

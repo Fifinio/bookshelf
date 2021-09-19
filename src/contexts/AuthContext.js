@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth"
 import { firebaseAuth } from "../services/firebase";
+import { useHistory } from "react-router";
 
 const AuthContext = React.createContext()
 
@@ -13,6 +14,7 @@ export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState();
     const [errorCode, setErrorCode] = useState();
     const [errorMessage, setErrorMessage] = useState();
+    const history = useHistory();
 
     const auth = firebaseAuth;
 
@@ -55,6 +57,7 @@ export function AuthProvider({ children }) {
     function logout(){
         signOut(auth).then(() => {
             setCurrentUser('')
+            history.push('/signin')
 
         })
         .catch((error) => {
