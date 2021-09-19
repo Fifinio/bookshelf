@@ -18,11 +18,12 @@ export function AuthProvider({ children }) {
 
     const auth = firebaseAuth;
 
-    //signup user, params from signup.js, this function is passed in {value} obj and passed to AuthContext.Provider
+    //sign up user, params from signup.js, this function is passed in {value} obj and passed to AuthContext.Provider
     function signup(email, password) {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setCurrentUser(userCredential.user)
+                history.push('/Homepage')
             })
             .catch((error) => {
                 setErrorCode(error.code);
@@ -30,11 +31,12 @@ export function AuthProvider({ children }) {
             })
     }
 
-    //signup user, params from signin.js, this function is passed in {value} obj and passed to AuthContext.Provider 
+    //sign in user, params from signin.js, this function is passed in {value} obj and passed to AuthContext.Provider 
     function signin(email, password) {
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             setCurrentUser(userCredential.user)
+            history.push('/Homepage')
         }).catch((error) => {
             setErrorCode(error.code);
             setErrorMessage('Wrong email or password.');
@@ -48,6 +50,7 @@ export function AuthProvider({ children }) {
                 setCurrentUser(user)
                 setErrorCode('');
                 setErrorMessage('');
+                history.push('/Homepage')
             }
         }, [])
         return unsubscribe

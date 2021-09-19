@@ -1,48 +1,56 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { useHistory } from 'react-router';
+import { Button, Input, Form, Grid, Header, Segment, Message, Image} from 'semantic-ui-react';
+import logo from "../images/bookshelf-logo.png"
 
 const SignIn = () => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const { signin } = useAuth();
-    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault()
         signin(email, password)
-        history.push('/Homepage')
     }
 
     return (
-    
-        <>
-        <div className="ui container form">
-            <form onSubmit={handleSubmit}>
-                <input 
-                    type={"email"}
-                    name={"email"}
-                    className="formTextInput"
-                    placeholder={"Email"}
-                    onChange={e => setEmail(e.target.value)}
-                    required />
-                <input 
-                    type={"password"}
-                    name={"password"}
-                    className="formTextInput"
-                    placeholder={"Password"}
-                    onChange={e => setPassword(e.target.value)}
-                    required />
-                <button 
-                type={'submit'}
-                className={'button'}>Sign in</button>
-            </form>
+            <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+    	     <Grid.Column style={{maxWidth: 450 }} >
+                <Header as="h1" color='teal' textAlign="center" style={{height: '100px'}}>
+                    <Image src={logo}/>
+                    Log-in to your account
+                </Header>
 
-            <span>Need an accout? <Link to='/signup'>Sign up!</Link></span>
-
-        </div>
-        </>
+                <Form size="large">
+                    <Segment stacked>
+                    <Form.Field>
+                        <Input 
+                            className="ui input"
+                            name="email"
+                            placeholder="Email"
+                            type="text" required
+                            onChange={e => setEmail(e.target.value)}/>
+                    </Form.Field>
+                    <Form.Field>
+                        <Input
+                            className="ui input"
+                            name="password"
+                            placeholder="Password"
+                            type="password" required
+                            onChange={e => setPassword(e.target.value)}/>
+                    </Form.Field>
+                    <Button 
+                            type="submit"
+                            className="ui primary button"
+                            onClick={handleSubmit}>
+                            Sign In</Button>
+                     </Segment>
+                </Form>
+        <Message size="small">Don't have account? <Link to='/signup'>Create one!</Link></Message>
+        </Grid.Column>
+      </Grid>
+        
     );
 }
 
