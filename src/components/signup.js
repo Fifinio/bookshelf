@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
-import { Button, Input, Form, Grid, Header, Segment, Message, Image, Label} from 'semantic-ui-react';
+import { Button, Input, Form, Grid, Header, Segment, Message, Image } from 'semantic-ui-react';
 import logo from "../images/bookshelf-logo.png"
 
 

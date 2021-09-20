@@ -1,4 +1,4 @@
-import { useState, useHistory } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { Button, Input, Form, Grid, Header, Segment, Message, Image} from 'semantic-ui-react';
@@ -7,7 +7,7 @@ import logo from "../images/bookshelf-logo.png"
 const SignIn = () => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const { signin } = useAuth();
+    const { signin, errorMessage  } = useAuth();
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -26,6 +26,7 @@ const SignIn = () => {
                 <Form size="large">
                     <Segment stacked>
                     <Form.Field>
+                        {errorMessage && <Message className={'ui negative message'}>{errorMessage}</Message>}
                         <label>Email</label>
                         <Input 
                             className="ui input"
