@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useHistory } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { Button, Input, Form, Grid, Header, Segment, Message, Image} from 'semantic-ui-react';
@@ -15,6 +15,7 @@ const SignIn = () => {
     }
 
     return (
+
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     	     <Grid.Column style={{maxWidth: 450 }} >
                 <Header as="h1" color='teal' textAlign="center" style={{height: '100px'}}>

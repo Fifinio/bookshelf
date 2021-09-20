@@ -1,11 +1,11 @@
 import { Card,Placeholder,Image, Icon } from "semantic-ui-react";
 
-const BookCard = () => {
+const BookCard = (props) => {
     return ( 
         <Card>
             <Image><Placeholder><Placeholder.Image square/></Placeholder></Image>
             <Card.Content>
-                <Card.Header>Book title</Card.Header>
+                <Card.Header>{props.title}</Card.Header>
                 <Card.Meta>
                     <span className='date'>Date of publish</span>
                 </Card.Meta>
