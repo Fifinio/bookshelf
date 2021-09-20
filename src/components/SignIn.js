@@ -26,18 +26,24 @@ const SignIn = () => {
                 <Form size="large">
                     <Segment stacked>
                     <Form.Field>
+                        <label>Email</label>
                         <Input 
                             className="ui input"
+                            icon="at"
+                            iconPosition="left"
                             name="email"
-                            placeholder="Email"
+                            placeholder="jane.doe@example.com"
                             type="text" required
                             onChange={e => setEmail(e.target.value)}/>
                     </Form.Field>
                     <Form.Field>
+                        <label>Password</label>
                         <Input
                             className="ui input"
+                            icon="key"
+                            iconPosition="left"
                             name="password"
-                            placeholder="Password"
+                            placeholder="ilovebooks!"
                             type="password" required
                             onChange={e => setPassword(e.target.value)}/>
                     </Form.Field>

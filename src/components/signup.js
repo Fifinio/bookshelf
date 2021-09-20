@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
-import { Button, Input, Form, Grid, Header, Segment, Message, Image} from 'semantic-ui-react';
+import { Button, Input, Form, Grid, Header, Segment, Message, Image, Label} from 'semantic-ui-react';
 import logo from "../images/bookshelf-logo.png"
 
 
@@ -11,25 +11,32 @@ const SignUp = (props) => {
   	const [email, setEmail] = useState('');
   	const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
     const  { signup } = useAuth();
     const history = useHistory();
 
-
+    const validateEmail = (email) => {
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+      }
 
     // function signup from AuthContext, create new user using firebase auth
     const handleSubmit = (e) => {
-
-        console.log(password)
-        console.log(confirmPassword)
-
+        if(!validateEmail(email)){
+            setPasswordError('This is not a valid email!');
+        }
         if (password !== confirmPassword) {
             setPasswordError(`Passwords don't match!`)
         }
-        else {
+         if(validateEmail(email) && password === confirmPassword){
             signup(email, password)
-            setPasswordError('')
-            history.push('/Homepage')
+            setPasswordError('');
+            setEmailError('');
+            setPassword('');
+            setEmail('');
+            setConfirmPassword('');
+            history.push('/Homepage');
         }
     }
 
@@ -47,26 +54,36 @@ const SignUp = (props) => {
                     <Segment stacked>
                     <Form.Field>
                             {passwordError && <Message className={'ui negative message'}>{passwordError}</Message>}
+                            {emailError && <Message className={'ui negative message'}>{emailError}</Message>}
+                        <label>Enter your email</label>
                         <Input 
                             className="ui input"
+                            icon="at"
+                            iconPosition="left"
                             name="email"
-                            placeholder="Email"
+                            placeholder="e.g. booklover@ilovebooks.com"
                             type="text" required
                             onChange={e=>setEmail(e.target.value)}/>
                     </Form.Field>
                     <Form.Field>
+                        <label>Enter your password</label>
                         <Input
                             className="ui input"
+                            icon="key"
+                            iconPosition="left"
                             name="password"
-                            placeholder="Password"
+                            placeholder="●●●●●●●●●●●"
                             type="password" required
                             onChange={e=>setPassword(e.target.value)}/>
                     </Form.Field>
                     <Form.Field>
+                        <label>Confirm your password</label>
                         <Input
                             className="ui input"
+                            icon="key"
+                            iconPosition="left"
                             name="confirmPassword"
-                            placeholder="Confirm Password"
+                            placeholder="●●●●●●●●●●●"
                             type="password" required
                             onChange={e=>setConfirmPassword(e.target.value)}/>
                         </Form.Field>
