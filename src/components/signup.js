@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
-import { Button, Input, Form, Grid, Header, Segment, Message, Image} from 'semantic-ui-react';
+import { Button, Input, Form, Grid, Header, Segment, Message, Image, Label} from 'semantic-ui-react';
 import logo from "../images/bookshelf-logo.png"
 
 
@@ -47,26 +47,35 @@ const SignUp = (props) => {
                     <Segment stacked>
                     <Form.Field>
                             {passwordError && <Message className={'ui negative message'}>{passwordError}</Message>}
+                        <label>Enter your email</label>
                         <Input 
                             className="ui input"
+                            icon="at"
+                            iconPosition="left"
                             name="email"
-                            placeholder="Email"
+                            placeholder="e.g. booklover@ilovebooks.com"
                             type="text" required
                             onChange={e=>setEmail(e.target.value)}/>
                     </Form.Field>
                     <Form.Field>
+                        <label>Enter your password</label>
                         <Input
                             className="ui input"
+                            icon="key"
+                            iconPosition="left"
                             name="password"
-                            placeholder="Password"
+                            placeholder="●●●●●●●●●●●"
                             type="password" required
                             onChange={e=>setPassword(e.target.value)}/>
                     </Form.Field>
                     <Form.Field>
+                        <label>Confirm your password</label>
                         <Input
                             className="ui input"
+                            icon="key"
+                            iconPosition="left"
                             name="confirmPassword"
-                            placeholder="Confirm Password"
+                            placeholder="●●●●●●●●●●●"
                             type="password" required
                             onChange={e=>setConfirmPassword(e.target.value)}/>
                         </Form.Field>
