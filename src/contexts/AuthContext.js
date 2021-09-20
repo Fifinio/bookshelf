@@ -23,7 +23,7 @@ export function AuthProvider({ children }) {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setCurrentUser(userCredential.user)
-                history.push('/Homepage')
+                history.push('/')
             })
             .catch((error) => {
                 setErrorCode(error.code);
@@ -36,7 +36,7 @@ export function AuthProvider({ children }) {
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             setCurrentUser(userCredential.user)
-            history.push('/Homepage')
+            history.push('/')
         }).catch((error) => {
             setErrorCode(error.code);
             setErrorMessage('Wrong email or password.');
@@ -50,7 +50,7 @@ export function AuthProvider({ children }) {
                 setCurrentUser(user)
                 setErrorCode('');
                 setErrorMessage('');
-                history.push('/Homepage')
+                history.push('/')
             }
         }, [])
         return unsubscribe

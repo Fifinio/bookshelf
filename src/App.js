@@ -1,26 +1,19 @@
 import React from 'react';
-import SignUp from './components/SignUp'
 import { AuthProvider } from './contexts/AuthContext';
-import SignIn from './components/SignIn';
-import Homepage from './components/Homepage';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PrivateRoute from './components/PrivateRoute';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 //styles
 import 'semantic-ui-css/semantic.min.css'
 import './styles/index.css';
+import RoutingComponent from './components/RoutingComponent';
 
 
 const App = () => {
+
     return (
         <Router>
             <AuthProvider>
-                <Switch>
-                    <PrivateRoute exact path='/' component={Homepage} />
-                    <PrivateRoute path='/homepage' component={Homepage}/>
-                    <Route path='/signin' component={SignIn}/>
-                    <Route path='/signup' component={SignUp}/>    
-                </Switch>
+                <RoutingComponent />
             </AuthProvider>
         </Router> 
     )

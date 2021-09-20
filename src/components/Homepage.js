@@ -1,18 +1,17 @@
 import Navbar from "./Navbar";
 import { Container } from "semantic-ui-react";
 import BookSegment from "./BookSegment";
-import { useEffect, useState } from "react";
 
 const Homepage = () => {
 
     return (
         <Container>
             <Navbar/>
-            <BookSegment title={'New books'} color={'red'} />
-            <BookSegment title={'Top rated'} color={'teal'} />
-            <BookSegment title={'Philosophy'} color={'blue'} />
-            <BookSegment title={'Horror'} color={'olive'} />
-            <BookSegment title={'Programming'} color={'brown'} />
+            <BookSegment title={'Fiction'} color={'blue'} subject={'fiction'} orderBy={'newest'} />
+            <BookSegment title={'Horror'} color={'red'} subject={'horror'} orderBy={'newest'} />
+            <BookSegment title={'Romance'} color={'orange'} subject={'romance'} orderBy={'newest'} />
+            <BookSegment title={'Fantasy'} color={'purple'} subject={'fantasy'} orderBy={'newest'} />
+            <BookSegment title={'Programming'} color={'yellow'} subject={'programming'} orderBy={'newest'} />
         </Container>
      );
 }

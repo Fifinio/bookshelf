@@ -3,17 +3,21 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { Button, Input, Form, Grid, Header, Segment, Message, Image} from 'semantic-ui-react';
 import logo from "../images/bookshelf-logo.png"
+import { Redirect } from "react-router";
 
 const SignIn = () => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    const { signin, errorMessage  } = useAuth();
+    const { signin, errorMessage, currentUser } = useAuth();
 
     const handleSubmit = (e) => {
         e.preventDefault()
         signin(email, password)
     }
 
+    if (currentUser) {
+        <Redirect to="./" />
+    }
     return (
 
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>

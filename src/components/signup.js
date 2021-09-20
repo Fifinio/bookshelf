@@ -36,7 +36,7 @@ const SignUp = (props) => {
             setPassword('');
             setEmail('');
             setConfirmPassword('');
-            history.push('/Homepage');
+            history.push('/');
         }
     }
 
