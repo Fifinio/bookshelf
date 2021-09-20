@@ -11,25 +11,32 @@ const SignUp = (props) => {
   	const [email, setEmail] = useState('');
   	const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
     const  { signup } = useAuth();
     const history = useHistory();
 
-
+    const validateEmail = (email) => {
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+      }
 
     // function signup from AuthContext, create new user using firebase auth
     const handleSubmit = (e) => {
-
-        console.log(password)
-        console.log(confirmPassword)
-
+        if(!validateEmail(email)){
+            setPasswordError('This is not a valid email!');
+        }
         if (password !== confirmPassword) {
             setPasswordError(`Passwords don't match!`)
         }
-        else {
+         if(validateEmail(email) && password === confirmPassword){
             signup(email, password)
-            setPasswordError('')
-            history.push('/Homepage')
+            setPasswordError('');
+            setEmailError('');
+            setPassword('');
+            setEmail('');
+            setConfirmPassword('');
+            history.push('/Homepage');
         }
     }
 
@@ -47,6 +54,7 @@ const SignUp = (props) => {
                     <Segment stacked>
                     <Form.Field>
                             {passwordError && <Message className={'ui negative message'}>{passwordError}</Message>}
+                            {emailError && <Message className={'ui negative message'}>{emailError}</Message>}
                         <label>Enter your email</label>
                         <Input 
                             className="ui input"
