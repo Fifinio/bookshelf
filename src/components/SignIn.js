@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { Button, Input, Form, Grid, Header, Segment, Message, Image} from 'semantic-ui-react';
+import { Button, Input, Form, Grid, Header, Segment, Message, Image } from 'semantic-ui-react';
 import logo from "../images/bookshelf-logo.png"
-import { Redirect } from "react-router";
+import LoaderComponent from './LoaderComponent'
 
 const SignIn = () => {
     const [email, setEmail] = useState();
@@ -15,11 +15,13 @@ const SignIn = () => {
         signin(email, password)
     }
 
-    if (currentUser) {
-        <Redirect to="./" />
+    if (currentUser === 'startValue') {
+        return (
+            <LoaderComponent />
+        )   
     }
-    return (
 
+    return (
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     	     <Grid.Column style={{maxWidth: 450 }} >
                 <Header as="h1" color='teal' textAlign="center" style={{height: '100px'}}>
@@ -61,8 +63,7 @@ const SignIn = () => {
                 </Form>
         <Message size="small">Don't have account? <Link to='/signup'>Create one!</Link></Message>
         </Grid.Column>
-      </Grid>
-        
+      </Grid>     
     );
 }
 

@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
-import { Button, Input, Form, Grid, Header, Segment, Message, Image } from 'semantic-ui-react';
+import { Button, Input, Form, Grid, Header, Segment, Message, Image, Loader } from 'semantic-ui-react';
 import logo from "../images/bookshelf-logo.png"
+import LoaderComponent from './LoaderComponent';
 
 
 const SignUp = (props) => {
@@ -13,7 +14,7 @@ const SignUp = (props) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
-    const  { signup } = useAuth();
+    const  { signup, currentUser } = useAuth();
     const history = useHistory();
 
     const validateEmail = (email) => {
@@ -40,8 +41,13 @@ const SignUp = (props) => {
         }
     }
 
+    if (currentUser === 'startValue') {
+        return (
+            <LoaderComponent />
+        )
+    } 
+
     return (
-        <>
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     	    <Grid.Column style={{maxWidth: 450 }} >
                 <Header as="h1" color='teal' textAlign="center" style={{height: '100px'}}>
@@ -98,7 +104,6 @@ const SignUp = (props) => {
         <Message size="small">Already have an account? <Link to='/signin'>Sign in!</Link></Message>
         </Grid.Column>
       </Grid>    
-      </>
     );
 }
 

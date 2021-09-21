@@ -11,7 +11,7 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-    const [currentUser, setCurrentUser] = useState();
+    const [currentUser, setCurrentUser] = useState('startValue');
     const [errorCode, setErrorCode] = useState();
     const [errorMessage, setErrorMessage] = useState();
     const history = useHistory();

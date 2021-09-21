@@ -8,7 +8,7 @@ const BookSegment = (props) => {
     const [booksData, setBooksData] = useState();
     const [loading, setLoading] = useState(true);
     const [maxResults, setMaxResults] = useState(5)
-    const [laungage, setLanguate] = useState('en')
+    const [laungage, setLanguage] = useState('en')
 
 
     const ApiKey= process.env.REACT_APP_GOOGLE_BOOKS_API_KEY;
@@ -29,7 +29,7 @@ const BookSegment = (props) => {
                 <Header as='h3'>
                     {props.title}
                 </Header>
-                <Grid relaxed columns={6}>
+                <Grid relaxed columns={5}>
                         <Grid.Column>
                             <BookCardPlaceholder />
                         </Grid.Column>
