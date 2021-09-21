@@ -11,8 +11,8 @@ const RoutingComponent = () => {
     return ( 
         <Switch>
             <PrivateRoute exact path='/' component={Homepage} />
-            {!currentUser ? <Route path='/signin' component={SignIn}/> : <Redirect to='/'/>}
-            {!currentUser ? <Route path='/signup' component={SignUp}/> : <Redirect to='/'/> }   
+            {!currentUser ? <Route path='/SignIn' component={SignIn}/> : <Redirect to='/'/>}
+            {!currentUser ? <Route path='/SignUp' component={SignUp}/> : <Redirect to='/'/> }   
         </Switch>
      );
 }
