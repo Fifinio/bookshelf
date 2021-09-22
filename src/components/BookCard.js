@@ -1,9 +1,16 @@
-import { Card,Placeholder,Image, Icon } from "semantic-ui-react";
+import { Card, Placeholder, Image, Icon } from "semantic-ui-react";
+import BookModal from "./BookModal";
+import { useState } from "react";
 
-const BookCard = (props) => {
-    return ( 
-        <Card>
-            <Image><Placeholder><Image src={props.image} size="large" /></Placeholder></Image>
+const BookCard = props => {
+
+    const [showModal, setShowModal] = useState(false)
+
+
+    return (
+        <>
+        <Card onClick={() => setShowModal(true)}>
+            <Image ><Placeholder><Image src={props.image} size="large" /></Placeholder></Image>
             <Card.Content>
                 <Card.Header>{props.title}</Card.Header>
                 <Card.Meta>
@@ -15,6 +22,8 @@ const BookCard = (props) => {
                 <Icon name='star'>Rating</Icon>    
             </Card.Content>
         </Card>
+        <BookModal key="Modal1" open={showModal} onClose={() => setShowModal(false)} book={props.bookData}/>
+        </>
      );
 }
  

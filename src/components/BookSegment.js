@@ -56,17 +56,18 @@ const BookSegment = (props) => {
                     {props.title}
                 </Header>
                 <Grid relaxed columns={5}>
-                    {loading ? <h2>LOADING</h2> : 
-                    booksData.map(book => (
+                     
+                    {booksData.map(book => (
                         <Grid.Column key={book.id}>
                             <BookCard 
                             title={book.volumeInfo.title}
                             author={book.volumeInfo.authors}
                             publishedDate={book.volumeInfo.publishedDate}
-                            image={book.volumeInfo.imageLinks.thumbnail} />
+                            image={book.volumeInfo.imageLinks.thumbnail}
+                            bookData={book} />
                         </Grid.Column>
                     ))
-                    }             
+                    }           
                 </Grid>
             </Segment>
          );
