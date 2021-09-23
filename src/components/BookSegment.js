@@ -29,7 +29,7 @@ const BookSegment = (props) => {
                 <Header as='h3'>
                     {props.title}
                 </Header>
-                <Grid relaxed columns={5}>
+                <Grid stackable relaxed columns={5}>
                         <Grid.Column>
                             <BookCardPlaceholder />
                         </Grid.Column>
@@ -55,7 +55,7 @@ const BookSegment = (props) => {
                 <Header as='h3'>
                     {props.title}
                 </Header>
-                <Grid relaxed columns={5}>
+                <Grid stackable relaxed columns={5}>
                      
                     {booksData.map(book => (
                         <Grid.Column key={book.id}>
