@@ -28,7 +28,7 @@ const BookModal = props => {
               Book Details
             </Modal.Header>
             <Modal.Content>
-              <Grid>
+              <Grid stackable>
                 <Grid.Column width={5}>
                   <Image src={book.volumeInfo.imageLinks.thumbnail} size="medium" />
                 </Grid.Column>
@@ -82,7 +82,7 @@ const BookModal = props => {
               <Header textAlign={'center'}>
                 <h3>Add book to list:</h3>
               </Header>
-            <Grid columns={3} textAlign={'center'}>
+            <Grid stackable columns={3} textAlign={'center'}>
                 <Grid.Column>
                 <Button size={'big'} icon labelPosition='left' color={'blue'}><Icon name='archive'/>To Read</Button>
                 </Grid.Column>
