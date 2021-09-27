@@ -90,7 +90,7 @@ const BookModal = props => {
                 <Button size={'big'} icon labelPosition='left' color={'teal'}><Icon name='book'/>Reading</Button>
                 </Grid.Column>
                 <Grid.Column>
-                <Button size={'big'} icon labelPosition='left' color={'green'}><Icon name='thumbs up outline'/>Readed</Button>
+                <Button size={'big'} icon labelPosition='left' color={'green'}><Icon name='thumbs up outline'/>Read</Button>
                 </Grid.Column>
                 </Grid>
             </Modal.Actions>
